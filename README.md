@@ -2,7 +2,7 @@
 Team: `promises()`  
 Deadline: 01/03/2020
 
-Your assignment is to create a web application, which allows users to sign-in/sign-up. This will grant them the ability to create simple expense list, they can add and delete from the expenses list.
+Your assignment is to create a web application, which allows users to sign-in/sign-up. This will grant them the ability to create simple expense list.
 
 ### Bonus Features:
 - Remaining Balance
@@ -10,7 +10,7 @@ Your assignment is to create a web application, which allows users to sign-in/si
 - Dashboard
 - Integration APIs
 
-All expenses should be saved into a database and handled using a `Node` + `Express` server which also need to be created.
+Everything should be saved into a database and handled using a `Node` + `Express` server which also need to be created.
 
 ### Requirements:
 1. The frontend should be built using `ReactJS`
