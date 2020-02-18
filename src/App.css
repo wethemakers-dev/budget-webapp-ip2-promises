@@ -2,9 +2,11 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.left{
+  text-align: left;
+}
+.errorMessage {
+  color: #c0392b;
 }
 
 @media (prefers-reduced-motion: no-preference) {
