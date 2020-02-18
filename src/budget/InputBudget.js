@@ -3,10 +3,28 @@ import { BudgetConsumer } from "../store";
 
 class InputBudget extends Component {
   state = {
-    Budget: ""
+    Budget: "",
+    mistake: {
+      Budget: ""
+    }
+  };
+
+  handleEmptyBudget = e => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    let mistake = this.state.mistake;
+
+    switch (name) {
+      case "budgetMain":
+        mistake.budgetMain = value === "" ? "You must enter The Budget!" : "";
+        break;
+      default:
+        break;
+    }
   };
 
   handleInput = e => {
+    this.handleEmptyBudget(e);
     this.setState({ budget: e.target.value });
   };
 
@@ -17,7 +35,9 @@ class InputBudget extends Component {
       budget: this.state.budget
     });
   };
+
   render() {
+    const { mistake } = this.state;
     return (
       <BudgetConsumer>
         {value => {
@@ -32,6 +52,7 @@ class InputBudget extends Component {
                   className="form-control mr-2"
                   type="number"
                   placeholder="Enter your budget"
+                  name="budgetMain"
                 />
                 <button
                   onClick={this.handleSubmit.bind(this, dispatch)}
@@ -39,6 +60,7 @@ class InputBudget extends Component {
                 >
                   Submit
                 </button>
+                <span className="errorMessage">{mistake.budgetMain}</span>
               </form>
             </div>
           );
@@ -47,5 +69,4 @@ class InputBudget extends Component {
     );
   }
 }
-
 export default InputBudget;

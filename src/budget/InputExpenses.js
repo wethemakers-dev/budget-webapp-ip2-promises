@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import { BudgetConsumer } from "../store";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition
+} from "react-toasts";
 
 class InputExpenses extends Component {
   state = {
@@ -45,9 +50,12 @@ class InputExpenses extends Component {
   };
 
   addExpenses = () => {
-    if (this.state.expenseTitle === "" || this.state.amount === "") {
-      /* Need to return here! */
-      alert("Nop!");
+    if (this.state.expenseTitle === "" && this.state.amount !== "") {
+      ToastsStore.error("Hey, you must enter the expenses!");
+    } else if (this.state.expenseTitle !== "" && this.state.amount === "") {
+      ToastsStore.error("Hey, you must enter the amount!");
+    } else if (this.state.expenseTitle == "" && this.state.amount === "") {
+      ToastsStore.error("Hey, you must enter the expenses & the amount!");
     } else if (isNaN(this.state.expenseTitle)) {
       this.setState({
         expenses: [
@@ -58,12 +66,12 @@ class InputExpenses extends Component {
         amount: ""
       });
     } else {
-      console.log("its not a string!");
+      ToastsStore.error("Hey, your expenses must contain a string!");
     }
   };
+
   render() {
     const { errors } = this.state;
-    let subE = "";
     return (
       <BudgetConsumer>
         {value => {
@@ -98,6 +106,10 @@ class InputExpenses extends Component {
                 >
                   Add
                 </button>
+                <ToastsContainer
+                  position={ToastsContainerPosition.BOTTOM_LEFT}
+                  store={ToastsStore}
+                />
               </form>
             </div>
           );
