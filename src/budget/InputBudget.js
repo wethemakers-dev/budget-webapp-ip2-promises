@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { BudgetConsumer } from "../store";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition
+} from "react-toasts";
 
 class InputBudget extends Component {
   state = {
-    Budget: "",
+    budget: "",
     mistake: {
-      Budget: ""
+      budget: ""
     }
   };
 
@@ -15,8 +20,8 @@ class InputBudget extends Component {
     let mistake = this.state.mistake;
 
     switch (name) {
-      case "budgetMain":
-        mistake.budgetMain = value === "" ? "You must enter The Budget!" : "";
+      case "budget":
+        mistake.budget = value === "" ? "You must enter The Budget!" : "";
         break;
       default:
         break;
@@ -30,10 +35,14 @@ class InputBudget extends Component {
 
   handleSubmit = (dispatch, e) => {
     e.preventDefault();
-    dispatch({
-      type: "ADD_BUDGET",
-      budget: this.state.budget
-    });
+    if (this.state.budget === "") {
+      ToastsStore.error("Hey, you must enter the budget!");
+    } else {
+      dispatch({
+        type: "ADD_BUDGET",
+        budget: this.state.budget
+      });
+    }
   };
 
   render() {
@@ -52,7 +61,7 @@ class InputBudget extends Component {
                   className="form-control mr-2"
                   type="number"
                   placeholder="Enter your budget"
-                  name="budgetMain"
+                  name="budget"
                 />
                 <button
                   onClick={this.handleSubmit.bind(this, dispatch)}
@@ -60,7 +69,7 @@ class InputBudget extends Component {
                 >
                   Submit
                 </button>
-                <span className="errorMessage">{mistake.budgetMain}</span>
+                <span className="errorMessage">{mistake.budget}</span>
               </form>
             </div>
           );
