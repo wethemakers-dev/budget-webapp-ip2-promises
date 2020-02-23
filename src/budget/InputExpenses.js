@@ -54,7 +54,7 @@ class InputExpenses extends Component {
       ToastsStore.error("Hey, you must enter the expenses!");
     } else if (this.state.expenseTitle !== "" && this.state.amount === "") {
       ToastsStore.error("Hey, you must enter the amount!");
-    } else if (this.state.expenseTitle == "" && this.state.amount === "") {
+    } else if (this.state.expenseTitle === "" && this.state.amount === "") {
       ToastsStore.error("Hey, you must enter the expenses & the amount!");
     } else if (isNaN(this.state.expenseTitle)) {
       this.setState({
