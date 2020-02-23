@@ -54,7 +54,7 @@ class InputBudget extends Component {
           return (
             <div className="card card-body mb-3 left">
               <label>Your Budget</label>
-              <form className="form-inline">
+              <form method="post" className="form-inline">
                 <input
                   onChange={this.handleInput}
                   value={this.state.budget}

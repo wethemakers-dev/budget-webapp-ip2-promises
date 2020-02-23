@@ -78,7 +78,10 @@ class InputExpenses extends Component {
           const { dispatch } = value;
           return (
             <div className="card card-body left">
-              <form onSubmit={this.handleSubmit.bind(this, dispatch)}>
+              <form
+                method="post"
+                onSubmit={this.handleSubmit.bind(this, dispatch)}
+              >
                 <label>Expenses</label>
                 <input
                   onChange={this.handleInput}
