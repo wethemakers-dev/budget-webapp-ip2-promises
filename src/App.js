@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Route exact path="/" component={Signin} />
-        <Route path="/new" component={Budget} />
+        <Route path="/Budget" component={Budget} />
       </BrowserRouter>
     );
   }
