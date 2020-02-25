@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import Navbar from "./navbar";
 import Budget from "./budget/Budget";
-
+import Signin from "./login/Signin";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <div className="container my-5">
-          <Budget />
-        </div>
-      </div>
+      <BrowserRouter>
+        <Route exact path="/" component={Signin} />
+        <Route path="/Budget" component={Budget} />
+      </BrowserRouter>
     );
   }
 }
