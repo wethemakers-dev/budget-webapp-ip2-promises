@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.left{
+  text-align: left;
+}
+.errorMessage {
+  color: #c0392b;
+}
