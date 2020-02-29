@@ -1,7 +1,8 @@
-import React, { Component } from "../node_modules/@types/react";
+import React, { Component } from "react";
 import Budget from "./budget/Budget";
 import Signin from "./login/Signin";
-import { BrowserRouter, Route } from "./node_modules/react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import Dashboard from "./display/dashboard/Dashboard";
 import "./App.css";
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
       <BrowserRouter>
         <Route exact path="/" component={Signin} />
         <Route path="/Budget" component={Budget} />
+        <Route path="/Dashboard" component={Dashboard} />
       </BrowserRouter>
     );
   }

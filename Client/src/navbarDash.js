@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Navbar extends Component {
+class NavbarDash extends Component {
   render() {
     return (
       <div className="wrapper-Budget">
         <div className="container-BudgetPlanner">
-          <h2>Budget Planner</h2>
+          <h2>Budget Planner Dashboard</h2>
           <ul>
             <li>
               <a href="#">&#9776;</a>
               <ul className="dropdown" aria-label="submenu">
                 <li>
                   <a href="#">
-                    <Link to={{ pathname: "/Dashboard" }}>Dashboard</Link>
+                    <Link to={{ pathname: "/Budget" }}>Budget Planner</Link>
                   </a>
                 </li>
                 <li>
@@ -30,4 +30,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default NavbarDash;

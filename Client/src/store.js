@@ -1,4 +1,4 @@
-import React, { Component, useReducer } from "../node_modules/@types/react";
+import React, { Component, useReducer } from "react";
 
 const BudgetContext = React.createContext();
 const reducer = (state, action) => {
