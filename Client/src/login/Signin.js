@@ -1,5 +1,6 @@
-import React, { Component } from "../../node_modules/@types/react";
+import React, { Component } from "react";
 import "./signin.css";
+import axios from "axios";
 
 class Signin extends Component {
   state = {
@@ -12,6 +13,33 @@ class Signin extends Component {
 
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleLogin = e => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3007/users/login", {
+        userE: this.state.userE,
+        userPass: this.state.userPass
+      })
+      .then(({ data }) => {
+        localStorage.setItem("user", JSON.stringify(data));
+        this.props.history.push("../budget/Budget");
+      });
+  };
+
+  handleRegister = e => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3007/users/insert", {
+        userEmail: this.state.userEmail,
+        userName: this.state.userName,
+        userPassword: this.state.userPassword
+      })
+      .then(({ data }) => {
+        localStorage.setItem("user", JSON.stringify(data));
+        this.props.history.push("../budget/Budget");
+      });
   };
 
   handleReg = () => {
@@ -58,7 +86,11 @@ class Signin extends Component {
               </button>
             </div>
 
-            <form id="login" className="input-group">
+            <form
+              id="login"
+              className="input-group"
+              onSubmit={this.handleLogin}
+            >
               <input
                 type="text"
                 className="inputField"
@@ -80,7 +112,11 @@ class Signin extends Component {
               </button>
             </form>
 
-            <form id="register" className="input-group">
+            <form
+              id="register"
+              className="input-group"
+              onSubmit={this.handleRegister}
+            >
               <input
                 type="text"
                 className="inputField"

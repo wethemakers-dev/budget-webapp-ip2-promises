@@ -8,3 +8,99 @@
 .errorMessage {
   color: #c0392b;
 }
+
+.wrapper-Budget{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container-BudgetPlanner{
+  background-color: #262626;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  height: 60px;
+}
+
+.container-BudgetPlanner h2 {
+  margin: 0;
+  padding-top: 10px;
+  padding-left: 25px;
+  color: #fff;
+}
+
+.container-BudgetPlanner a {
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.container-BudgetPlanner ul {
+  list-style: none;
+  margin: 0;
+  margin-top: 5px;
+  padding-left: 0;
+  margin-left: auto;
+  margin-right: 42px;
+}
+
+.container-BudgetPlanner li {
+  color: #fff;
+  background: #262626;
+  display: block;
+  padding: 10px 25px;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 500ms;
+}
+
+.container-BudgetPlanner li a{
+  color: inherit;
+}
+
+.container-BudgetPlanner li:hover,
+.container-BudgetPlanner li:focus{
+  background-color: #cc2a36;
+  color: #fff;
+  cursor: pointer;
+}
+
+.container-BudgetPlanner ul li ul {
+  position: absolute;
+  transition: background-color 0.5s ease-in;
+  margin-top: 10px;
+  left: 0;
+  display: none;
+}
+
+.container-BudgetPlanner ul li:hover > ul,
+.container-BudgetPlanner ul li:focus > ul,
+.container-BudgetPlanner ul li ul:focus,
+.container-BudgetPlanner ul li ul:hover{
+  opacity: 1;
+  display: block;
+}
+
+.container-BudgetPlanner ul li ul li {
+  clear: both;
+  width: 100%;
+  animation: animate 800ms forwards ease;
+}
+
+.container-BudgetPlanner ul li ul li:nth-of-type(1){
+  transform-origin: top left;
+  transform: skewX(45deg) scaleY(0);
+}
+
+.container-BudgetPlanner ul li ul li:nth-of-type(2){
+  transform-origin: top right;
+  transform: skewX(-45deg) scaleY(0);
+  animation-delay: 150ms;
+}
+
+@keyframes animate{
+  to{
+    transform: skewX(0deg) scaleY(1);
+  }
+}

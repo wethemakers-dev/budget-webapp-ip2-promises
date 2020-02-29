@@ -1,10 +1,10 @@
-import React, { Component } from "../../node_modules/@types/react";
+import React, { Component } from "react";
 import { BudgetConsumer } from "../store";
 import {
   ToastsContainer,
   ToastsStore,
   ToastsContainerPosition
-} from "./node_modules/react-toasts";
+} from "react-toasts";
 
 class InputBudget extends Component {
   state = {

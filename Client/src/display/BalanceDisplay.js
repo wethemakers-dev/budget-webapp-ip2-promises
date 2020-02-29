@@ -1,4 +1,4 @@
-import React from "../../node_modules/@types/react";
+import React from "react";
 import { BudgetConsumer } from "../store";
 
 const BalanceDisplay = () => {
