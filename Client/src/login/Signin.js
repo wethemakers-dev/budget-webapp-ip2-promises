@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import "./signin.css";
 import axios from "axios";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition
+} from "react-toasts";
 
 class Signin extends Component {
   state = {
@@ -17,29 +22,71 @@ class Signin extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3007/users/login", {
-        userE: this.state.userE,
-        userPass: this.state.userPass
-      })
-      .then(({ data }) => {
-        localStorage.setItem("user", JSON.stringify(data));
-        this.props.history.push("../budget/Budget");
-      });
+    if (this.state.userE !== "" && this.state.userPass !== "") {
+      axios
+        .post("http://localhost:3007/users/login", {
+          userE: this.state.userE,
+          userPass: this.state.userPass
+        })
+        .then(({ data }) => {
+          localStorage.setItem("user", JSON.stringify(data));
+          this.props.history.push("../budget/Budget");
+        });
+    } else if (this.state.userE === "" && this.state.userPass !== "") {
+      ToastsStore.error("Hey, you must enter the email!");
+    } else if (this.state.userE !== "" && this.state.userPass === "") {
+      ToastsStore.error("Hey, you must enter the password!");
+    } else if (this.state.userE === "" && this.state.userPass === "") {
+      ToastsStore.error("Hey, you must enter the email & the password!");
+    }
   };
 
   handleRegister = e => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3007/users/insert", {
-        userEmail: this.state.userEmail,
-        userName: this.state.userName,
-        userPassword: this.state.userPassword
-      })
-      .then(({ data }) => {
-        localStorage.setItem("user", JSON.stringify(data));
-        this.props.history.push("../budget/Budget");
-      });
+    if (
+      this.state.userEmail !== "" &&
+      this.state.userPassword !== "" &&
+      this.state.userName !== ""
+    ) {
+      axios
+        .post("http://localhost:3007/users/insert", {
+          userEmail: this.state.userEmail,
+          userName: this.state.userName,
+          userPassword: this.state.userPassword
+        })
+        .then(({ data }) => {
+          localStorage.setItem("user", JSON.stringify(data));
+          this.props.history.push("../budget/Budget");
+        });
+    } else if (
+      this.state.userEmail === "" &&
+      this.state.userPassword !== "" &&
+      this.state.userName !== ""
+    ) {
+      ToastsStore.error("Hey, you must enter the email!");
+    } else if (
+      this.state.userEmail !== "" &&
+      this.state.userPassword === "" &&
+      this.state.userName !== ""
+    ) {
+      ToastsStore.error("Hey, you must enter the password!");
+    } else if (
+      this.state.userEmail === "" &&
+      this.state.userPassword === "" &&
+      this.state.userName === ""
+    ) {
+      ToastsStore.error(
+        "Hey, you must enter the email & the user name & the password!"
+      );
+    } else if (
+      this.state.userEmail !== "" &&
+      this.state.userPassword !== "" &&
+      this.state.userName === ""
+    ) {
+      ToastsStore.error("Hey, you must enter the user name");
+    } else if (this.state.userPassword.length < 7) {
+      ToastsStore.error("Hey, The password must be at least 8 characters long");
+    }
   };
 
   handleReg = () => {
@@ -145,6 +192,10 @@ class Signin extends Component {
               <button type="submit" className="submit-btn" tabIndex="-1">
                 Register
               </button>
+              <ToastsContainer
+                position={ToastsContainerPosition.BOTTOM_LEFT}
+                store={ToastsStore}
+              />
             </form>
           </div>
         </div>

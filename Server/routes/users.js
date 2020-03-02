@@ -35,16 +35,36 @@ router.post("/login", (req, res, next) => {
   const userEmails = userE.toLowerCase();
 
   User.findOne({ userEmail: userEmails }, (error, previousUser) => {
-    if (error) res.send({ messege: "error server" });
+    if (error) {
+      return res.send("Server Error");
+    } else if (previousUser) {
+      if (previousUser.validPassword(userPass)) {
+        console.log("here");
 
-    if (!previousUser) res.send({ messege: "no user found" });
-    if (!previousUser.validPassword(userPass)) {
-      res.send({ messege: "error Password" });
+        return res.send(previousUser);
+      } else {
+        res.send("wrong Password");
+      }
+    } else {
+      console.log("no user");
+
+      return res.send("no user found");
     }
-
-    res.send(previousUser);
   });
-  // res.send('No user Found');
+  //   if (error) res.send({ messege: "error server" });
+
+  //   if (!previousUser) {
+  //     res.send({ messege: "no user found" });
+  //     return;
+  //   }
+  //   if (!previousUser.validPassword(userPass)) {
+  //     res.send({ messege: "error Password" });
+  //     return;
+  //   }
+
+  //   res.send(previousUser);
+  // });
+  // // res.send('No user Found');
 });
 
 router.get("/reg", function(req, res, next) {
